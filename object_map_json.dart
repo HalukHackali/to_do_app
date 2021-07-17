@@ -14,7 +14,9 @@ main() {
   print('itemAsJson Type: ${itemAsJson.runtimeType}');
 
   itemAsMap = json.decode(itemAsJson);
-  itemObject=Item(title: itemAsMap['title'], isDone: itemAsMap['isDone']);
+  // itemObject=Item(title: itemAsMap['title'], isDone: itemAsMap['isDone']);
+  // ya da alttaki satır üstekiyle aynı:
+  itemObject=Item.fromMap(itemAsMap);
   print(itemObject);
 
 }
@@ -24,6 +26,8 @@ class Item {
   bool isDone;
 
   Item({this.title, this.isDone});
+
+  Item.fromMap(Map<String, dynamic> map) : title=map['title'], isDone=map['isDone'];
 
   Map<String, dynamic>toMap()=>{'title':title, 'isDone':isDone};
 
